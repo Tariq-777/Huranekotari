@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>huranekotari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0c;
+    --bg2: #111116;
+    --bg3: #18181f;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e6e0;
+    --muted: #8a8880;
+    --accent: #c9a96e;
+    --accent2: #8b6b9f;
+    --red: #9f3a3a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,12,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(139,107,159,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s ease forwards;
+  }
+
+  .hero-name span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,169,110,0.5);
+  }
+
+  .hero-tagline {
+    margin-top: 2rem;
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 480px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s ease forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeIn 1s 1.2s ease forwards;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 50px;
+    background: var(--muted);
+    margin: 0.75rem auto 0;
+    opacity: 0.4;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 0 2rem;
+    opacity: 0.6;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 7rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-aside {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .about-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+  }
+
+  .about-card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .about-card-role {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-card-detail {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .about-card-detail span:first-child {
+    color: var(--accent);
+    min-width: 14px;
+  }
+
+  .about-body p {
+    font-size: 1rem;
+    color: rgba(232,230,224,0.75);
+    margin-bottom: 1.5rem;
+    line-height: 1.9;
+  }
+
+  /* SKILLS */
+  .skills-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+
+  .skill-card {
+    background: var(--bg);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .skill-card:hover { background: var(--bg3); }
+
+  .skill-icon {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* SOCIALS / CONTACT */
+  .contact-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .social-link:first-child { border-top: 1px solid var(--border); }
+
+  .social-link:hover { color: var(--accent); border-color: var(--accent); padding-left: 0.5rem; }
+
+  .social-link-name {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.2rem;
+    transition: color 0.25s;
+  }
+
+  .social-link:hover .social-link-name { color: var(--accent); }
+
+  .social-link-handle {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+  }
+
+  .social-link-arrow { color: var(--muted); font-size: 1.2rem; transition: transform 0.25s; }
+  .social-link:hover .social-link-arrow { transform: translateX(4px); }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+
+  .contact-item:hover { border-color: var(--border-hover); }
+
+  .contact-item-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-item-value {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .placeholder-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(139,107,159,0.08);
+    border: 1px dashed rgba(139,107,159,0.3);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent2);
+    border-radius: 2px;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-aside { position: static; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Huranekotari</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Portfolio &amp; Identity</p>
+  <h1 class="hero-name">Hura<span>ne</span><br/>kotari</h1>
+  <p class="hero-tagline">Web designer. Voice artist. Event architect. Teacher at heart.</p>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">Who I am</p>
+  <h2 class="section-title reveal">About Me</h2>
+  <div class="section-divider reveal"></div>
+
+  <div class="about-grid">
+    <div class="about-aside reveal">
+      <div class="about-card">
+        <p class="about-card-name">Huranekotari</p>
+        <p style="font-size:0.8rem; color:var(--muted); margin-bottom:0.1rem; letter-spacing:0.05em;">Tariq Hurairah</p>
+        <p class="about-card-role">Creative &amp; Organizer</p>
+        <div class="about-card-detail"><span>✦</span><span>Web Design</span></div>
+        <div class="about-card-detail"><span>✦</span><span>Voice Acting</span></div>
+        <div class="about-card-detail"><span>✦</span><span>Event Management</span></div>
+        <div class="about-card-detail"><span>✦</span><span>English Teaching (HS)</span></div>
+      </div>
+    </div>
+
+    <div class="about-body reveal">
+      <p>Hey — I'm Tariq Hurairah, known online as Huranekotari. I exist somewhere between the visual, the vocal, and the organizational. I build things that look good on screen, give voice to things that need to be heard, and make sure events don't fall apart before they begin.</p>
+      <p>I've spent time as an English teaching assistant at the high school level, which taught me that clarity and communication aren't just professional skills — they're everything. Whether I'm designing a layout, stepping into a recording booth, or coordinating a hundred moving parts, that same principle follows me everywhere.</p>
+      <p style="color: var(--accent2); font-style: italic; font-size: 0.9rem;">✎ &nbsp;Update this section with your own story — this is just a starting point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <p class="section-label reveal">What I do</p>
+  <h2 class="section-title reveal">Skills &amp; Craft</h2>
+  <div class="section-divider reveal"></div>
+
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <p class="skill-icon">01</p>
+      <h3 class="skill-name">Web Design</h3>
+      <p class="skill-desc">Crafting digital experiences that balance visual identity with usability. From concept to layout to launch — I design spaces people actually want to inhabit.</p>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-icon">02</p>
+      <h3 class="skill-name">Voice Acting</h3>
+      <p class="skill-desc">Lending my voice to characters, narration, and projects that need something real. Every delivery is intentional — paced, toned, and felt.</p>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-icon">03</p>
+      <h3 class="skill-name">Event Management</h3>
+      <p class="skill-desc">Planning, organizing, and executing events that run smoothly and leave an impression. I handle the chaos so everyone else can just enjoy it.</p>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-icon">04</p>
+      <h3 class="skill-name">English Teaching</h3>
+      <p class="skill-desc">Former HS English TA with a genuine love for language and communication. I know how to break ideas down, make them stick, and meet people where they are.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <p class="section-label reveal">Get in touch</p>
+  <h2 class="section-title reveal">Contact &amp; Socials</h2>
+  <div class="section-divider reveal"></div>
+
+  <div class="contact-grid">
+    <div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:2rem;" class="reveal">Find me across the internet:</p>
+      <div class="social-links reveal">
+        <a class="social-link" href="https://instagram.com/taaaaaaaaaaaaaaaariq.420" target="_blank" rel="noopener">
+          <div>
+            <span class="social-link-name">Instagram</span>
+            <span class="social-link-handle">@taaaaaaaaaaaaaaaariq.420</span>
+          </div>
+          <span class="social-link-arrow">→</span>
+        </a>
+        <div class="social-link" style="opacity:0.5; cursor:default;">
+          <div>
+            <span class="social-link-name">Twitter / X</span>
+            <span class="social-link-handle placeholder-tag">✎ Add your handle</span>
+          </div>
+          <span class="social-link-arrow">→</span>
+        </div>
+        <div class="social-link" style="opacity:0.5; cursor:default;">
+          <div>
+            <span class="social-link-name">YouTube / Twitch</span>
+            <span class="social-link-handle placeholder-tag">✎ Add your channel</span>
+          </div>
+          <span class="social-link-arrow">→</span>
+        </div>
+        <div class="social-link" style="opacity:0.5; cursor:default;">
+          <div>
+            <span class="social-link-name">LinkedIn</span>
+            <span class="social-link-handle placeholder-tag">✎ Add your profile</span>
+          </div>
+          <span class="social-link-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <p class="contact-item-label">Email</p>
+        <p class="contact-item-value"><span class="placeholder-tag">✎ Add your email address</span></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Discord</p>
+        <p class="contact-item-value"><span class="placeholder-tag">✎ Add your Discord tag</span></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Available for</p>
+        <p class="contact-item-value" style="color:var(--text); font-style:normal;">Freelance design, voice work, event coordination &amp; collabs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Huranekotari</span>
+  <span class="footer-copy">© 2026 — All rights reserved</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
