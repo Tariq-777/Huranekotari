@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Web Design — Huranekotari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Huranekotari</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <a href="index.html" class="page-back">← Back to Home</a>
+  <p class="page-header-eyebrow">01 — Craft</p>
+  <h1 class="page-header-title">Web <span>Design</span></h1>
+  <p class="page-header-desc">Digital spaces built with intention. From wireframe to launch — layouts, identities, and experiences people actually want to use.</p>
+</div>
+
+<div class="portfolio-section">
+  <p class="section-label reveal">Selected Work</p>
+  <div class="section-divider reveal"></div>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item reveal">
+      <p class="portfolio-item-number">Project 01</p>
+      <div class="portfolio-item-thumb">
+        <div class="portfolio-item-placeholder-line"></div>
+        <span class="portfolio-item-thumb-label">✎ Add screenshot or image</span>
+      </div>
+      <p class="portfolio-item-meta"><span class="placeholder-tag">✎ Year</span></p>
+      <h3 class="portfolio-item-title"><span class="placeholder-tag">✎ Project Title</span></h3>
+      <p class="portfolio-item-desc"><span class="placeholder-tag">✎ Brief description of the project — what it was, what you built, and what problem it solved.</span></p>
+      <div class="portfolio-tags">
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <p class="portfolio-item-number">Project 02</p>
+      <div class="portfolio-item-thumb">
+        <div class="portfolio-item-placeholder-line"></div>
+        <span class="portfolio-item-thumb-label">✎ Add screenshot or image</span>
+      </div>
+      <p class="portfolio-item-meta"><span class="placeholder-tag">✎ Year</span></p>
+      <h3 class="portfolio-item-title"><span class="placeholder-tag">✎ Project Title</span></h3>
+      <p class="portfolio-item-desc"><span class="placeholder-tag">✎ Brief description of the project — what it was, what you built, and what problem it solved.</span></p>
+      <div class="portfolio-tags">
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <p class="portfolio-item-number">Project 03</p>
+      <div class="portfolio-item-thumb">
+        <div class="portfolio-item-placeholder-line"></div>
+        <span class="portfolio-item-thumb-label">✎ Add screenshot or image</span>
+      </div>
+      <p class="portfolio-item-meta"><span class="placeholder-tag">✎ Year</span></p>
+      <h3 class="portfolio-item-title"><span class="placeholder-tag">✎ Project Title</span></h3>
+      <p class="portfolio-item-desc"><span class="placeholder-tag">✎ Brief description of the project — what it was, what you built, and what problem it solved.</span></p>
+      <div class="portfolio-tags">
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+        <span class="portfolio-tag placeholder-tag">✎ Tag</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-nav">
+  <a href="index.html" class="page-nav-item prev">
+    <span class="page-nav-label">← Home</span>
+    <span class="page-nav-title">Back to Index</span>
+  </a>
+  <a href="voice-acting.html" class="page-nav-item next">
+    <span class="page-nav-label">Next →</span>
+    <span class="page-nav-title">Voice Acting</span>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-name">Huranekotari</span>
+  <span class="footer-copy">© 2026 — All rights reserved</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
