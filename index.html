@@ -3,377 +3,369 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FAQ — Huranekotari</title>
+<title>Huranekotari</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
-<style>
-  .faq-section {
-    padding: 5rem 3rem 7rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .faq-block {
-    margin-bottom: 5rem;
-  }
-
-  .faq-block-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .faq-block-icon {
-    font-size: 1.5rem;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .faq-block-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .faq-block-subtitle {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 0.2rem;
-  }
-
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .faq-item:first-child {
-    border-top: 1px solid var(--border);
-  }
-
-  .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-family: 'Raleway', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    text-align: left;
-    padding: 1.5rem 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.25s;
-  }
-
-  .faq-question:hover { color: var(--accent); }
-
-  .faq-question.open { color: var(--accent); }
-
-  .faq-chevron {
-    font-size: 0.8rem;
-    color: var(--muted);
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .faq-question.open .faq-chevron {
-    transform: rotate(180deg);
-    color: var(--accent);
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-  }
-
-  .faq-answer.open {
-    max-height: 500px;
-  }
-
-  .faq-answer-inner {
-    padding: 0 0 1.75rem;
-    font-size: 0.95rem;
-    color: rgba(232,230,224,0.7);
-    line-height: 1.9;
-    max-width: 700px;
-  }
-
-  .faq-answer-inner strong {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .faq-answer-inner a {
-    color: var(--accent2);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .faq-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.55rem;
-    color: var(--muted);
-    border-radius: 1px;
-    margin: 0.2rem 0.2rem 0 0;
-  }
-
-  @media (max-width: 768px) {
-    .faq-section { padding: 3rem 1.5rem 5rem; }
-    .faq-question { font-size: 0.92rem; }
-  }
-</style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">Huranekotari</a>
   <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav_about">About</a></li>
+    <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn" id="langBtn">🇬🇧 EN ▾</button>
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-option active" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+      <button class="lang-option" data-lang="ar"><span class="lang-flag">🇸🇦</span> العربية</button>
+      <button class="lang-option" data-lang="fil"><span class="lang-flag">🇵🇭</span> Filipino</button>
+      <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+      <button class="lang-option" data-lang="it"><span class="lang-flag">🇮🇹</span> Italiano</button>
+      <button class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span> 中文</button>
+      <button class="lang-option" data-lang="ja"><span class="lang-flag">🇯🇵</span> 日本語</button>
+    </div>
+  </div>
 </nav>
 
-<div class="page-header">
-  <a href="index.html" class="page-back">← Back to Home</a>
-  <p class="page-header-eyebrow">Get to know me</p>
-  <h1 class="page-header-title">Fre<span>quently</span><br/>Asked</h1>
-  <p class="page-header-desc">Everything you might want to know — the personal stuff and the professional stuff, all in one place.</p>
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow" data-i18n="hero_eyebrow">Portfolio &amp; Identity</p>
+  <h1 class="hero-name">Hura<span>ne</span><br/>kotari</h1>
+  <p class="hero-tagline" data-i18n="hero_tagline">Web designer. Voice artist. Event architect. Teacher at heart.</p>
+  <div class="hero-scroll" data-i18n="hero_scroll">Scroll</div>
 </div>
 
-<div class="faq-section">
-
-  <!-- PERSONAL -->
-  <div class="faq-block">
-    <div class="faq-block-header reveal">
-      <div class="faq-block-icon">🙂</div>
-      <div>
-        <p class="faq-block-title">Personal</p>
-        <p class="faq-block-subtitle">The human behind the handle</p>
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal" data-i18n="about_label">Who I am</p>
+  <h2 class="section-title reveal" data-i18n="about_title">About Me</h2>
+  <div class="section-divider reveal"></div>
+  <div class="about-grid">
+    <div class="about-aside reveal">
+      <div class="about-card">
+        <p class="about-card-name">Huranekotari</p>
+        <p class="about-card-realname">Tariq Hurairah</p>
+        <p class="about-card-role" data-i18n="card_role">Creative &amp; Organizer</p>
+        <div class="about-card-detail"><span>✦</span><span data-i18n="skill1">Web Design</span></div>
+        <div class="about-card-detail"><span>✦</span><span data-i18n="skill2">Voice Acting</span></div>
+        <div class="about-card-detail"><span>✦</span><span data-i18n="skill3">Event Management</span></div>
+        <div class="about-card-detail"><span>✦</span><span data-i18n="skill4">English Teaching (HS)</span></div>
       </div>
     </div>
-
-    <div class="faq-list reveal">
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Where are you from?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Born in <strong>Riyadh, Saudi Arabia</strong> to a Filipina mother and an Egyptian father — so I'm a bit of everything. Right now I'm based in <strong>Egypt</strong>, studying Computer Science.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What languages do you speak?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>English</strong> is my native language, followed closely by <strong>Arabic</strong>. I understand some <strong>Tagalog</strong> thanks to my mother's side, and have a basic grasp of <strong>French</strong> and <strong>Spanish</strong>.<br/><br/>
-            <span class="faq-tag">English</span>
-            <span class="faq-tag">Arabic</span>
-            <span class="faq-tag">Tagalog</span>
-            <span class="faq-tag">French</span>
-            <span class="faq-tag">Spanish</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How did you get into web design, voice acting and events?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>Web Design</strong> came through university — studying CS introduced me to it, even if I wasn't immediately in love with it. It grew on me.<br/><br/>
-            <strong>Voice Acting</strong> was a natural extension of my love for theatre and drama. Performance was always something I was drawn to, and VA became the outlet for that.<br/><br/>
-            <strong>Events</strong> happened through my university club, <strong>LGSY.gg</strong> — and it happened fast. I hold the record for the fastest back-to-back promotions: Member → Co-Head HR → Head HR, all in a single semester. We organize events inside and outside the university, with the biggest being <strong>Egycon</strong>, the largest anime convention in Egypt.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What do you do for fun?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            I love all forms of art — drawing, singing, and playing instruments are all things I dabble in. On the sports side, I play <strong>football, basketball, and volleyball</strong>. I wouldn't call myself a genius at any of it, but I pick things up fast and enjoy the process.<br/><br/>
-            <span class="faq-tag">Drawing</span>
-            <span class="faq-tag">Singing</span>
-            <span class="faq-tag">Instruments</span>
-            <span class="faq-tag">Football</span>
-            <span class="faq-tag">Basketball</span>
-            <span class="faq-tag">Volleyball</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What are you into? Music, shows, games?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Big on <strong>music and anime</strong>. My favorite artist is <strong>Laufey</strong> — her sound is something else. For anime, <strong>Cyberpunk: Edgerunners</strong> and <strong>The Great Pretender</strong> are my top picks. Both hit different for very different reasons.
-          </div>
-        </div>
-      </div>
-
+    <div class="about-body reveal">
+      <p data-i18n="about_p1">Hey — I'm Tariq Hurairah, known online as Huranekotari. I exist somewhere between the visual, the vocal, and the organizational. I build things that look good on screen, give voice to things that need to be heard, and make sure events don't fall apart before they begin.</p>
+      <p data-i18n="about_p2">I've spent time as an English teaching assistant at the high school level, which taught me that clarity and communication aren't just professional skills — they're everything. Whether I'm designing a layout, stepping into a recording booth, or coordinating a hundred moving parts, that same principle follows me everywhere.</p>
+      <p style="color: var(--accent2); font-style: italic; font-size: 0.9rem;" data-i18n="about_placeholder">✎ &nbsp;Update this section with your own story — this is just a starting point.</p>
     </div>
   </div>
+</section>
 
-  <!-- BUSINESS -->
-  <div class="faq-block">
-    <div class="faq-block-header reveal">
-      <div class="faq-block-icon">💼</div>
-      <div>
-        <p class="faq-block-title">Business</p>
-        <p class="faq-block-subtitle">Working together</p>
-      </div>
-    </div>
-
-    <div class="faq-list reveal">
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Are you available for remote work?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes — fully open to remote work. Location is no barrier.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What tools do you use?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            My primary tool for development and design work is <strong>Visual Studio Code</strong>. I'll update this section as my stack grows.<br/><br/>
-            <span class="faq-tag">VS Code</span>
-            <span class="faq-tag placeholder-tag">✎ Add more tools</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How do I hire you or work with you?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Simple — just reach out through whatever works for you. Email, Instagram, Discord, LinkedIn — I'm on all of them. Once we connect, we'll work out the details and put together a proper contract before anything starts.<br/><br/>
-            <a href="index.html#contact">→ Go to Contact</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Do you take on collab projects or only paid work?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <span class="faq-tag placeholder-tag">✎ Add your answer here</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What's your typical turnaround time?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <span class="faq-tag placeholder-tag">✎ Add your answer here</span>
-          </div>
-        </div>
-      </div>
-
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <p class="section-label reveal" data-i18n="skills_label">What I do</p>
+  <h2 class="section-title reveal" data-i18n="skills_title">Skills &amp; Craft</h2>
+  <div class="section-divider reveal"></div>
+  <div class="skills-grid">
+    <a href="web-design.html" class="skill-card skill-card-link reveal">
+      <p class="skill-icon">01</p>
+      <h3 class="skill-name" data-i18n="skill1">Web Design</h3>
+      <p class="skill-desc" data-i18n="skill1_desc">Crafting digital experiences that balance visual identity with usability. From concept to layout to launch — I design spaces people actually want to inhabit.</p>
+      <span class="skill-arrow" data-i18n="view_work">View work →</span>
+    </a>
+    <a href="voice-acting.html" class="skill-card skill-card-link reveal">
+      <p class="skill-icon">02</p>
+      <h3 class="skill-name" data-i18n="skill2">Voice Acting</h3>
+      <p class="skill-desc" data-i18n="skill2_desc">Lending my voice to characters, narration, and projects that need something real. Every delivery is intentional — paced, toned, and felt.</p>
+      <span class="skill-arrow" data-i18n="view_work">View work →</span>
+    </a>
+    <a href="event-management.html" class="skill-card skill-card-link reveal">
+      <p class="skill-icon">03</p>
+      <h3 class="skill-name" data-i18n="skill3">Event Management</h3>
+      <p class="skill-desc" data-i18n="skill3_desc">Planning, organizing, and executing events that run smoothly and leave an impression. I handle the chaos so everyone else can just enjoy it.</p>
+      <span class="skill-arrow" data-i18n="view_work">View work →</span>
+    </a>
+    <div class="skill-card reveal">
+      <p class="skill-icon">04</p>
+      <h3 class="skill-name" data-i18n="skill4_title">English Teaching</h3>
+      <p class="skill-desc" data-i18n="skill4_desc">Former HS English TA with a genuine love for language and communication. I know how to break ideas down, make them stick, and meet people where they are.</p>
     </div>
   </div>
+</section>
 
-</div>
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <p class="section-label reveal" data-i18n="contact_label">Get in touch</p>
+  <h2 class="section-title reveal" data-i18n="contact_title">Contact &amp; Socials</h2>
+  <div class="section-divider reveal"></div>
+  <div class="contact-grid">
+    <div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:2rem;" class="reveal" data-i18n="find_me">Find me across the internet:</p>
+      <div class="social-links reveal">
+        <a class="social-link" href="https://instagram.com/taaaaaaaaaaaaaaaariq.420" target="_blank" rel="noopener">
+          <div><span class="social-link-name">Instagram</span><span class="social-link-handle">@taaaaaaaaaaaaaaaariq.420</span></div>
+          <span class="social-link-arrow">→</span>
+        </a>
+        <div class="social-link" style="opacity:0.5; cursor:default;">
+          <div><span class="social-link-name">Twitter / X</span><span class="social-link-handle placeholder-tag">✎ Add your handle</span></div>
+          <span class="social-link-arrow">→</span>
+        </div>
+        <div class="social-link" style="opacity:0.5; cursor:default;">
+          <div><span class="social-link-name">YouTube / Twitch</span><span class="social-link-handle placeholder-tag">✎ Add your channel</span></div>
+          <span class="social-link-arrow">→</span>
+        </div>
+        <a class="social-link" href="https://www.linkedin.com/in/tariq-youssef-003213253/" target="_blank" rel="noopener">
+          <div><span class="social-link-name">LinkedIn</span><span class="social-link-handle">Tariq Youssef</span></div>
+          <span class="social-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <p class="contact-item-label" data-i18n="email_label">Email</p>
+        <p class="contact-item-value"><a href="mailto:huranekotari@gmail.com" style="color:var(--text); text-decoration:none;">huranekotari@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Discord</p>
+        <p class="contact-item-value" style="color:var(--text); font-style:normal;">huranekotari</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label" data-i18n="avail_label">Available for</p>
+        <p class="contact-item-value" style="color:var(--text); font-style:normal;" data-i18n="avail_value">Freelance design, voice work, event coordination &amp; collabs.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <span class="footer-name">Huranekotari</span>
-  <span class="footer-copy">© 2026 — All rights reserved</span>
+  <span class="footer-copy" data-i18n="footer_copy">© 2026 — All rights reserved</span>
 </footer>
 
 <script>
-  // Accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const answer = btn.nextElementSibling;
-      const isOpen = btn.classList.contains('open');
+const translations = {
+  en: {
+    nav_about:"About", nav_skills:"Skills", nav_contact:"Contact",
+    hero_eyebrow:"Portfolio & Identity",
+    hero_tagline:"Web designer. Voice artist. Event architect. Teacher at heart.",
+    hero_scroll:"Scroll",
+    about_label:"Who I am", about_title:"About Me",
+    card_role:"Creative & Organizer",
+    skill1:"Web Design", skill2:"Voice Acting", skill3:"Event Management",
+    skill4:"English Teaching (HS)", skill4_title:"English Teaching",
+    about_p1:"Hey — I'm Tariq Hurairah, known online as Huranekotari. I exist somewhere between the visual, the vocal, and the organizational. I build things that look good on screen, give voice to things that need to be heard, and make sure events don't fall apart before they begin.",
+    about_p2:"I've spent time as an English teaching assistant at the high school level, which taught me that clarity and communication aren't just professional skills — they're everything. Whether I'm designing a layout, stepping into a recording booth, or coordinating a hundred moving parts, that same principle follows me everywhere.",
+    about_placeholder:"✎ Update this section with your own story — this is just a starting point.",
+    skills_label:"What I do", skills_title:"Skills & Craft",
+    skill1_desc:"Crafting digital experiences that balance visual identity with usability. From concept to layout to launch — I design spaces people actually want to inhabit.",
+    skill2_desc:"Lending my voice to characters, narration, and projects that need something real. Every delivery is intentional — paced, toned, and felt.",
+    skill3_desc:"Planning, organizing, and executing events that run smoothly and leave an impression. I handle the chaos so everyone else can just enjoy it.",
+    skill4_desc:"Former HS English TA with a genuine love for language and communication. I know how to break ideas down, make them stick, and meet people where they are.",
+    view_work:"View work →",
+    contact_label:"Get in touch", contact_title:"Contact & Socials",
+    find_me:"Find me across the internet:",
+    email_label:"Email", avail_label:"Available for",
+    avail_value:"Freelance design, voice work, event coordination & collabs.",
+    footer_copy:"© 2026 — All rights reserved", lang_label:"EN"
+  },
+  ar: {
+    nav_about:"عني", nav_skills:"مهاراتي", nav_contact:"تواصل",
+    hero_eyebrow:"ملف الأعمال والهوية",
+    hero_tagline:"مصمم ويب. فنان صوتي. منظم فعاليات. معلم بالفطرة.",
+    hero_scroll:"مرر",
+    about_label:"من أنا", about_title:"نبذة عني",
+    card_role:"مبدع ومنظم",
+    skill1:"تصميم الويب", skill2:"التمثيل الصوتي", skill3:"إدارة الفعاليات",
+    skill4:"تدريس الإنجليزية", skill4_title:"تدريس الإنجليزية",
+    about_p1:"مرحباً — أنا طارق هريرة، المعروف إلكترونياً بـ هورانيكوتاري. أعيش في المنطقة الفاصلة بين البصري والصوتي والتنظيمي. أبني أشياء تبدو جميلة على الشاشة، وأُعطي صوتاً لما يحتاج إلى أن يُسمع، وأضمن أن الفعاليات لا تنهار قبل أن تبدأ.",
+    about_p2:"قضيت وقتاً كمساعد تدريس للغة الإنجليزية في المرحلة الثانوية، مما علّمني أن الوضوح والتواصل ليسا مجرد مهارات مهنية — بل هما كل شيء. سواء كنت أصمم تخطيطاً أو أدخل غرفة التسجيل أو أنسق مئة تفصيل، يسير هذا المبدأ معي في كل مكان.",
+    about_placeholder:"✎ حدّث هذا القسم بقصتك الخاصة — هذه مجرد نقطة بداية.",
+    skills_label:"ما أفعله", skills_title:"المهارات والحرفة",
+    skill1_desc:"صياغة تجارب رقمية توازن بين الهوية البصرية وسهولة الاستخدام. من الفكرة إلى التصميم إلى الإطلاق.",
+    skill2_desc:"أُقرض صوتي للشخصيات والسرد والمشاريع التي تحتاج إلى شيء حقيقي. كل أداء مقصود — بالإيقاع والنبرة والإحساس.",
+    skill3_desc:"التخطيط والتنظيم وتنفيذ الفعاليات بسلاسة وبأثر يدوم. أتعامل مع الفوضى حتى يستمتع الجميع.",
+    skill4_desc:"مساعد تدريس سابق للغة الإنجليزية بشغف حقيقي بالتواصل. أعرف كيف أُبسّط الأفكار وأجعلها راسخة.",
+    view_work:"عرض الأعمال ←",
+    contact_label:"تواصل معي", contact_title:"التواصل والشبكات",
+    find_me:"جدني عبر الإنترنت:",
+    email_label:"البريد الإلكتروني", avail_label:"متاح لـ",
+    avail_value:"تصميم مستقل، عمل صوتي، تنسيق فعاليات، وتعاون.",
+    footer_copy:"© ٢٠٢٦ — جميع الحقوق محفوظة", lang_label:"AR"
+  },
+  fil: {
+    nav_about:"Tungkol", nav_skills:"Kasanayan", nav_contact:"Makipag-ugnayan",
+    hero_eyebrow:"Portfolio at Pagkakakilanlan",
+    hero_tagline:"Web designer. Artista ng boses. Tagaplano ng events. Guro sa puso.",
+    hero_scroll:"I-scroll",
+    about_label:"Sino ako", about_title:"Tungkol sa Akin",
+    card_role:"Malikhain at Tagaorganisa",
+    skill1:"Web Design", skill2:"Voice Acting", skill3:"Pamamahala ng Events",
+    skill4:"Pagtuturo ng Ingles (HS)", skill4_title:"Pagtuturo ng Ingles",
+    about_p1:"Hoy — ako si Tariq Hurairah, kilala sa online bilang Huranekotari. Nabubuhay ako sa pagitan ng visual, vocal, at organisasyon. Gumagawa ako ng mga bagay na maganda sa screen, nagbibigay ng boses sa mga bagay na kailangang marinig, at tinitiyak na ang mga events ay hindi guguho bago pa magsimula.",
+    about_p2:"Nagsilbi akong teaching assistant sa Ingles sa high school, na nagturo sa akin na ang kalinawan at komunikasyon ay hindi lang propesyonal na kasanayan — sila ang lahat. Kahit nagdidisenyo ako ng layout, pumapasok sa recording booth, o nag-kokoordina ng daan-daang detalye, ang prinsipyong ito ay sumusunod sa akin sa lahat ng dako.",
+    about_placeholder:"✎ I-update ang seksyong ito ng iyong sariling kuwento — ito ay simula pa lamang.",
+    skills_label:"Ano ang ginagawa ko", skills_title:"Mga Kasanayan at Sining",
+    skill1_desc:"Gumagawa ng mga digital na karanasan na nagbabalanse ng visual na pagkakakilanlan at kakayahang gamitin. Mula sa konsepto hanggang layout hanggang paglulunsad.",
+    skill2_desc:"Nagpapahiram ng aking boses sa mga karakter, salaysay, at proyektong nangangailangan ng tunay na bagay. Ang bawat paghahatid ay may layunin.",
+    skill3_desc:"Nagpaplano, nag-oorganisa, at nagsasagawa ng mga events nang maayos at may naiiwanang impresyon. Hawak ko ang kaguluhan para masiyahan na lang ang lahat.",
+    skill4_desc:"Dating HS English TA na may tunay na pagmamahal sa wika at komunikasyon. Alam ko kung paano hatiin ang mga ideya at maabot ang mga tao.",
+    view_work:"Tingnan ang gawa →",
+    contact_label:"Makipag-ugnayan", contact_title:"Makipag-ugnayan at Socials",
+    find_me:"Hanapin ako sa internet:",
+    email_label:"Email", avail_label:"Available para sa",
+    avail_value:"Freelance na disenyo, voice work, koordinasyon ng events, at kolaborasyon.",
+    footer_copy:"© 2026 — Lahat ng karapatan ay nakalaan", lang_label:"FIL"
+  },
+  es: {
+    nav_about:"Sobre mí", nav_skills:"Habilidades", nav_contact:"Contacto",
+    hero_eyebrow:"Portafolio e Identidad",
+    hero_tagline:"Diseñador web. Artista de voz. Arquitecto de eventos. Maestro de corazón.",
+    hero_scroll:"Desplazar",
+    about_label:"Quién soy", about_title:"Sobre Mí",
+    card_role:"Creativo y Organizador",
+    skill1:"Diseño Web", skill2:"Actuación de Voz", skill3:"Gestión de Eventos",
+    skill4:"Enseñanza de Inglés (Bachillerato)", skill4_title:"Enseñanza de Inglés",
+    about_p1:"Hola — soy Tariq Hurairah, conocido en línea como Huranekotari. Existo en algún punto entre lo visual, lo vocal y lo organizativo. Construyo cosas que se ven bien en pantalla, doy voz a lo que necesita ser escuchado y me aseguro de que los eventos no se desmoronen antes de comenzar.",
+    about_p2:"He pasado tiempo como asistente de enseñanza de inglés en la escuela secundaria, lo que me enseñó que la claridad y la comunicación no son solo habilidades profesionales — lo son todo. Ya sea diseñando un layout, entrando a una cabina de grabación o coordinando cientos de detalles, ese principio me sigue a todas partes.",
+    about_placeholder:"✎ Actualiza esta sección con tu propia historia — esto es solo un punto de partida.",
+    skills_label:"Lo que hago", skills_title:"Habilidades y Oficio",
+    skill1_desc:"Creando experiencias digitales que equilibran la identidad visual con la usabilidad. Del concepto al layout al lanzamiento.",
+    skill2_desc:"Prestando mi voz a personajes, narración y proyectos que necesitan algo real. Cada interpretación es intencional — con ritmo, tono y sentimiento.",
+    skill3_desc:"Planificando, organizando y ejecutando eventos que transcurran sin problemas y dejen huella. Me encargo del caos para que todos los demás puedan disfrutarlo.",
+    skill4_desc:"Ex asistente de inglés en bachillerato con un amor genuino por el lenguaje. Sé cómo desglosar ideas y llegar a las personas donde están.",
+    view_work:"Ver trabajos →",
+    contact_label:"Contáctame", contact_title:"Contacto y Redes",
+    find_me:"Encuéntrame en internet:",
+    email_label:"Correo electrónico", avail_label:"Disponible para",
+    avail_value:"Diseño freelance, trabajo de voz, coordinación de eventos y colaboraciones.",
+    footer_copy:"© 2026 — Todos los derechos reservados", lang_label:"ES"
+  },
+  it: {
+    nav_about:"Chi sono", nav_skills:"Competenze", nav_contact:"Contatti",
+    hero_eyebrow:"Portfolio e Identità",
+    hero_tagline:"Web designer. Artista vocale. Architetto di eventi. Insegnante di cuore.",
+    hero_scroll:"Scorri",
+    about_label:"Chi sono", about_title:"Su di Me",
+    card_role:"Creativo e Organizzatore",
+    skill1:"Web Design", skill2:"Doppiaggio", skill3:"Gestione Eventi",
+    skill4:"Insegnamento dell'Inglese (liceo)", skill4_title:"Insegnamento dell'Inglese",
+    about_p1:"Ciao — sono Tariq Hurairah, conosciuto online come Huranekotari. Esisto da qualche parte tra il visivo, il vocale e l'organizzativo. Costruisco cose che sembrano belle sullo schermo, do voce a ciò che deve essere ascoltato e mi assicuro che gli eventi non vadano in pezzi prima di cominciare.",
+    about_p2:"Ho trascorso del tempo come assistente d'insegnamento d'inglese al liceo, il che mi ha insegnato che chiarezza e comunicazione non sono solo competenze professionali — sono tutto. Che stia progettando un layout, entrando in una cabina di registrazione o coordinando cento dettagli, quel principio mi segue ovunque.",
+    about_placeholder:"✎ Aggiorna questa sezione con la tua storia — è solo un punto di partenza.",
+    skills_label:"Cosa faccio", skills_title:"Competenze e Arte",
+    skill1_desc:"Creando esperienze digitali che bilanciano identità visiva e usabilità. Dal concept al layout al lancio.",
+    skill2_desc:"Prestando la mia voce a personaggi, narrazioni e progetti che hanno bisogno di qualcosa di autentico. Ogni interpretazione è intenzionale.",
+    skill3_desc:"Pianificando, organizzando ed eseguendo eventi che scorrono senza intoppi e lasciano un'impressione. Mi occupo del caos affinché tutti possano godersi l'evento.",
+    skill4_desc:"Ex assistente d'inglese al liceo con un genuino amore per il linguaggio. So come scomporre le idee e raggiungere le persone dove si trovano.",
+    view_work:"Vedi i lavori →",
+    contact_label:"Contattami", contact_title:"Contatti e Social",
+    find_me:"Trovami su internet:",
+    email_label:"Email", avail_label:"Disponibile per",
+    avail_value:"Design freelance, lavoro vocale, coordinamento eventi e collaborazioni.",
+    footer_copy:"© 2026 — Tutti i diritti riservati", lang_label:"IT"
+  },
+  zh: {
+    nav_about:"关于我", nav_skills:"技能", nav_contact:"联系",
+    hero_eyebrow:"作品集与身份",
+    hero_tagline:"网页设计师。配音演员。活动策划师。热爱教学。",
+    hero_scroll:"滚动",
+    about_label:"我是谁", about_title:"关于我",
+    card_role:"创意人 & 组织者",
+    skill1:"网页设计", skill2:"配音", skill3:"活动管理",
+    skill4:"英语教学（高中）", skill4_title:"英语教学",
+    about_p1:"嗨 — 我是 Tariq Hurairah，网络上以 Huranekotari 为人所知。我存在于视觉、声音与组织管理的交汇处。我创作在屏幕上看起来出色的东西，为需要被听见的事物发声，并确保活动在开始之前不会崩溃。",
+    about_p2:"我曾在高中担任英语教学助理，这让我明白清晰表达和沟通不仅仅是职业技能——它们就是一切。无论是设计页面布局、走进录音棚，还是协调数百个细节，这一原则始终伴随着我。",
+    about_placeholder:"✎ 用你自己的故事更新此部分——这只是一个起点。",
+    skills_label:"我的专长", skills_title:"技能与创作",
+    skill1_desc:"打造兼顾视觉美感与易用性的数字体验。从概念到布局到上线——我设计人们真正想要驻留的空间。",
+    skill2_desc:"为角色、旁白和需要真实感的项目献声。每一次表演都是有意为之——节奏、音调、情感缺一不可。",
+    skill3_desc:"规划、组织并执行顺畅且令人印象深刻的活动。我处理一切混乱，让所有人都能尽情享受。",
+    skill4_desc:"前高中英语助教，对语言和沟通充满热情。我知道如何分解想法、让它们深入人心。",
+    view_work:"查看作品 →",
+    contact_label:"联系我", contact_title:"联系与社交",
+    find_me:"在网上找到我：",
+    email_label:"邮箱", avail_label:"可接受",
+    avail_value:"自由设计、配音工作、活动协调和合作项目。",
+    footer_copy:"© 2026 — 版权所有", lang_label:"中文"
+  },
+  ja: {
+    nav_about:"自己紹介", nav_skills:"スキル", nav_contact:"連絡先",
+    hero_eyebrow:"ポートフォリオとアイデンティティ",
+    hero_tagline:"Webデザイナー。声優。イベントプランナー。教える心を持つ人。",
+    hero_scroll:"スクロール",
+    about_label:"私について", about_title:"自己紹介",
+    card_role:"クリエイター & オーガナイザー",
+    skill1:"Webデザイン", skill2:"声優", skill3:"イベント管理",
+    skill4:"英語教育（高校）", skill4_title:"英語教育",
+    about_p1:"こんにちは — 私はTariq Hurairahです。オンラインではHuranekotariとして知られています。視覚、声、そして組織の狭間に存在しています。画面上で美しく見えるものを作り、聞かれるべき声を届け、イベントが始まる前に崩壊しないよう管理します。",
+    about_p2:"高校で英語の教育助手として時間を過ごしました。その経験から、明確さとコミュニケーションは単なる職業スキルではなく、すべてだと学びました。レイアウトをデザインしているときも、録音ブースに入るときも、何百もの細部を調整するときも、その原則は常に私とともにあります。",
+    about_placeholder:"✎ このセクションをあなた自身のストーリーで更新してください — これはあくまでも出発点です。",
+    skills_label:"得意なこと", skills_title:"スキルと技",
+    skill1_desc:"視覚的なアイデンティティと使いやすさのバランスを取ったデジタル体験を作ります。コンセプトからレイアウト、リリースまで。",
+    skill2_desc:"キャラクター、ナレーション、リアルさが必要なプロジェクトに声を貸します。すべての演技は意図的 — ペース、トーン、感情を込めて。",
+    skill3_desc:"スムーズに進み、印象を残すイベントを計画・組織・実行します。混乱を処理するのは私。みんなが楽しめるように。",
+    skill4_desc:"言語とコミュニケーションへの純粋な情熱を持つ元高校英語ティーチングアシスタント。",
+    view_work:"作品を見る →",
+    contact_label:"お問い合わせ", contact_title:"連絡先とSNS",
+    find_me:"インターネットで見つけてください：",
+    email_label:"メール", avail_label:"対応可能な業務",
+    avail_value:"フリーランスデザイン、声優業務、イベント調整、コラボレーション。",
+    footer_copy:"© 2026 — 全著作権所有", lang_label:"日本語"
+  }
+};
 
-      // Close all
-      document.querySelectorAll('.faq-question').forEach(b => {
-        b.classList.remove('open');
-        b.nextElementSibling.classList.remove('open');
-      });
+const langFlags = { en:"🇬🇧", ar:"🇸🇦", fil:"🇵🇭", es:"🇪🇸", it:"🇮🇹", zh:"🇨🇳", ja:"🇯🇵" };
 
-      // Open this one if it was closed
-      if (!isOpen) {
-        btn.classList.add('open');
-        answer.classList.add('open');
-      }
-    });
+function applyLanguage(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
   });
+  document.body.classList.toggle('rtl', lang === 'ar');
+  document.documentElement.lang = lang;
+  document.getElementById('langBtn').innerHTML = `${langFlags[lang]} ${t.lang_label} ▾`;
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  try { localStorage.setItem('hura_lang', lang); } catch(e) {}
+}
 
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.getElementById('langBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('langDropdown').classList.toggle('open');
+});
+
+document.querySelectorAll('.lang-option').forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyLanguage(btn.dataset.lang);
+    document.getElementById('langDropdown').classList.remove('open');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.getElementById('langDropdown').classList.remove('open');
+});
+
+try {
+  const saved = localStorage.getItem('hura_lang');
+  if (saved && translations[saved]) applyLanguage(saved);
+} catch(e) {}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
